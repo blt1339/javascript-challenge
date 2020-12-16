@@ -40,6 +40,18 @@ function runEnter() {
       // Filter the data by what was entered
         filteredData = tableData.filter(ufoReport => moment(ufoReport.datetime).format('l') === moment(dateInputValue).format('l'));
   };
+  
+  // Select the city input element and get the raw HTML node
+  let cityInputElement = d3.select("#city");
+
+  // Get the value property of the city input element
+  let cityInputValue = cityInputElement.property("value");
+
+  // If a city was entered then filter the data
+  if (cityInputValue !== "") {
+      // Filter the data by what was entered
+        filteredData = filteredData.filter(ufoReport => ufoReport.city.toLowerCase() === cityInputValue.toLowerCase());
+   };
 
   // Clear the displayed data
   tbody.html("");
