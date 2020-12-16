@@ -53,6 +53,22 @@ function runEnter() {
         filteredData = filteredData.filter(ufoReport => ufoReport.city.toLowerCase() === cityInputValue.toLowerCase());
    };
 
+
+  // Select the state input element and get the raw HTML node
+  let stateInputElement = d3.select("#state");
+
+  // Get the value property of the state input element
+  let stateInputValue = stateInputElement.property("value");
+
+  // If a city was entered then filter the data
+  if (stateInputValue !== "") {
+      // Filter the data by what was entered
+        filteredData = filteredData.filter(ufoReport => ufoReport.state.toLowerCase() === stateInputValue.toLowerCase());
+        
+  };
+
+
+
   // Clear the displayed data
   tbody.html("");
 
