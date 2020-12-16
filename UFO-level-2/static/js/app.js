@@ -15,12 +15,14 @@ var resetButton = d3.select("#reset-btn");
 var form = d3.select(".ufo-form");
 
 // Create event handlers 
-filterButton.on("click", runEnter);
-resetButton.on("click", runReset);
-form.on("submit",runEnter);
+filterButton.on("click", filterData);
+resetButton.on("click", resetData);
+form.on("submit",filterData);
 
-// Complete the event handler function for the form
-function runEnter() {
+//------------------------------------------------------------ 
+// When you either submit or click on Filter Table, filter it
+//------------------------------------------------------------ 
+function filterData() {
 
   // Prevent the page from refreshing
   d3.event.preventDefault();
@@ -79,7 +81,7 @@ function runEnter() {
   // If a country was entered then filter the data
   if (countryInputValue !== "") {
       // Filter the data by what was entered
-        filteredData = filteredData.filter(ufoReport => ufoReport.country.toLowerCase() === countryInputValue.toLowerCase());
+      filteredData = filteredData.filter(ufoReport => ufoReport.country.toLowerCase() === countryInputValue.toLowerCase());
         
   };
 
@@ -88,7 +90,7 @@ function runEnter() {
   let shapeInputElement = d3.select("#shape");
 
     // Get the value property of the shape input element
-    let shapeInputValue = shapeInputElement.property("value");
+  let shapeInputValue = shapeInputElement.property("value");
   
     // If a shape was entered then filter the data
     if (shapeInputValue !== "") {
@@ -104,8 +106,12 @@ function runEnter() {
   outputData(filteredData);
 };
 
-// Complete the event handler function for the form
-function runReset() {
+
+
+//------------------------------------------------------------ 
+// Reset the data so it shows all data agein
+//------------------------------------------------------------ 
+function resetData() {
 
     // Prevent the page from refreshing
     d3.event.preventDefault();
@@ -117,12 +123,15 @@ function runReset() {
     outputData(tableData);
   };
 
-  function outputData(outputData) {
-    outputData.forEach((ufoInfo) => {
-        let row = tbody.append("tr");
-        Object.entries(ufoInfo).forEach(([key, value]) => {
-          let cell = row.append("td");
-          cell.text(value);
-        });
-      });
-    };
+//------------------------------------------------------------ 
+// Output the passed in data, either original or filtered
+//------------------------------------------------------------ 
+function outputData(outputData) {
+  outputData.forEach((ufoInfo) => {
+    let row = tbody.append("tr");
+    Object.entries(ufoInfo).forEach(([key, value]) => {
+      let cell = row.append("td");
+      cell.text(value);
+    });
+  });
+};

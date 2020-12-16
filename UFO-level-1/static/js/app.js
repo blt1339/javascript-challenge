@@ -16,12 +16,14 @@ var form = d3.select(".ufo-form");
 console.log(form.html());
 
 // Create event handlers 
-filterButton.on("click", runEnter);
-resetButton.on("click", runReset);
-form.on("submit",runEnter);
+filterButton.on("click", filterData);
+resetButton.on("click", resetData);
+form.on("submit",filterData);
 
-// Complete the event handler function for the form
-function runEnter() {
+//------------------------------------------------------------ 
+// When you either submit or click on Filter Table, filter it
+//------------------------------------------------------------ 
+function filterData() {
 
   // Prevent the page from refreshing
   d3.event.preventDefault();
@@ -31,8 +33,7 @@ function runEnter() {
 
   // Get the value property of the input element
   let inputValue = inputElement.property("value");
-  console.log(inputValue);
-
+  
   // If a date was entered then filter the data
   if (inputValue !== "") {
       // Filter the data by what was entered
@@ -46,8 +47,10 @@ function runEnter() {
     };
 };
 
-// Complete the event handler function for the form
-function runReset() {
+//------------------------------------------------------------ 
+// Reset the data so it shows all data agein
+//------------------------------------------------------------ 
+function resetData() {
 
     // Prevent the page from refreshing
     d3.event.preventDefault();
@@ -59,12 +62,15 @@ function runReset() {
     outputData(tableData);
   };
 
-  function outputData(outputData) {
-    outputData.forEach((ufoInfo) => {
-        let row = tbody.append("tr");
-        Object.entries(ufoInfo).forEach(([key, value]) => {
-          let cell = row.append("td");
-          cell.text(value);
-        });
-      });
-    };
+//------------------------------------------------------------ 
+// Output the passed in data, either original or filtered
+//------------------------------------------------------------ 
+function outputData(outputData) {
+  outputData.forEach((ufoInfo) => {
+    let row = tbody.append("tr");
+    Object.entries(ufoInfo).forEach(([key, value]) => {
+      let cell = row.append("td");
+      cell.text(value);
+    });
+  });
+};
