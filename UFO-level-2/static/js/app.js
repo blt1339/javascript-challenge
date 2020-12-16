@@ -13,7 +13,6 @@ var resetButton = d3.select("#reset-btn");
 
 // Select the form
 var form = d3.select(".ufo-form");
-console.log(form.html());
 
 // Create event handlers 
 filterButton.on("click", runEnter);
@@ -30,6 +29,7 @@ function runEnter() {
   let filteredData = tableData;
   
   // Select the input element for date and get the raw HTML node
+  //------------------------------------------------------------
   let dateInputElement = d3.select("#datetime");
 
   // Get the value property of the date input element
@@ -42,6 +42,7 @@ function runEnter() {
   };
   
   // Select the city input element and get the raw HTML node
+  //------------------------------------------------------------
   let cityInputElement = d3.select("#city");
 
   // Get the value property of the city input element
@@ -55,6 +56,7 @@ function runEnter() {
 
 
   // Select the state input element and get the raw HTML node
+  //------------------------------------------------------------
   let stateInputElement = d3.select("#state");
 
   // Get the value property of the state input element
@@ -67,7 +69,33 @@ function runEnter() {
         
   };
 
+  // Select the country input element and get the raw HTML node
+  //------------------------------------------------------------ 
+  let countryInputElement = d3.select("#country");
 
+  // Get the value property of the country input element
+  let countryInputValue = countryInputElement.property("value");
+
+  // If a country was entered then filter the data
+  if (countryInputValue !== "") {
+      // Filter the data by what was entered
+        filteredData = filteredData.filter(ufoReport => ufoReport.country.toLowerCase() === countryInputValue.toLowerCase());
+        
+  };
+
+  // Select the shape input element and get the raw HTML node
+  //------------------------------------------------------------
+  let shapeInputElement = d3.select("#shape");
+
+    // Get the value property of the shape input element
+    let shapeInputValue = shapeInputElement.property("value");
+  
+    // If a shape was entered then filter the data
+    if (shapeInputValue !== "") {
+        // Filter the data by what was entered
+          filteredData = filteredData.filter(ufoReport => ufoReport.shape.toLowerCase() === shapeInputValue.toLowerCase());
+          
+    };
 
   // Clear the displayed data
   tbody.html("");
