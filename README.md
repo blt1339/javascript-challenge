@@ -12,7 +12,7 @@ UFO Finder is a web page that displays UFO data and allows the data to be filter
 This level allows entry of a date.  You can click on the Filter Table button or you can enter return on the date field to filter the data according to the entered date.   Dates can be entered with or without leading zeros on month and day.   There is also a Reset Table button that causes all data to be displayed again.
 
 # UFO Level 2
-This level allows entry of a date, city, state, country and / or shape.  You can click on the Filter Table button or you can enter return  on any input fields to filter the data according to the entered information.   Dates can be entered with or without leading zeros on month and day. The other fields can be entered using either capital or small letters.  There is also a Reset Table button that causes all data to be displayed again as occurs when the page originally loads.
+This level allows entry of a date, city, state, country and / or shape.  You can click on the Filter Table button, enter return  on any input fields, or tab to another field to filter the data according to the entered information in all of the filter fields.   Dates can be entered with or without leading zeros on month and day. The other fields can be entered using either capital or small letters.  There is also a Reset Table button that causes all data to be displayed again as occurs when the page originally loads.
 
 # Dataset
 * [UFO Sightings Data](UFO-level-1/static/js/data.js)
