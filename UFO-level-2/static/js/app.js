@@ -2,22 +2,23 @@
 var tableData = data;
 
 // select the tbody
-var tbody = d3.select("tbody");
+const tbody = d3.select("tbody");
 
 // Output the table data initially
 outputData(tableData);
 
 // Select the buttons
-var filterButton = d3.select("#filter-btn");
-var resetButton = d3.select("#reset-btn");
+const filterButton = d3.select("#filter-btn");
+const resetButton = d3.select("#reset-btn");
 
-// Select the form
-var form = d3.select(".ufo-form");
+// Select the body
+const body = d3.select('body');
+
 
 // Create event handlers 
 filterButton.on("click", filterData);
 resetButton.on("click", resetData);
-form.on("submit",filterData);
+body.on('change', filterData);
 
 //------------------------------------------------------------ 
 // When you either submit or click on Filter Table, filter it
@@ -68,7 +69,6 @@ function filterData() {
   if (stateInputValue !== "") {
       // Filter the data by what was entered
         filteredData = filteredData.filter(ufoReport => ufoReport.state.toLowerCase() === stateInputValue.toLowerCase());
-        
   };
 
   // Select the country input element and get the raw HTML node
